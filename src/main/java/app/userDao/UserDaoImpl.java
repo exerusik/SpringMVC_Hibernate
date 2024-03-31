@@ -23,12 +23,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public void saveUser(User user) {
-    entityManager.persist(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void deleteUserById(long id) {
-
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 
     @Override
