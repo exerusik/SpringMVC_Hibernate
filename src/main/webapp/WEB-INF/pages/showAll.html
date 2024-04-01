@@ -18,6 +18,17 @@
         <td th:text="${user.getName()}"></td>
         <td th:text="${user.getLastname()}"></td>
         <td th:text="${user.getAge()}"></td>
+        <td>
+            <form th:method="POST" th:action="@{/delete?id={id}(id=${user.getId()})}">
+                <input name="delete" type="submit" value="Delete"/>
+            </form>
+        </td>
+
+        <td>
+            <form method="post" th:action="@{/edit?id={id}(id=${user.getId()})}">
+                <input name="edit" type="submit" value="Edit"/>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
