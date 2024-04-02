@@ -13,4 +13,6 @@ public interface UserService {
 
     User getUserById(long id);
 
+    void editUser(User user);
+
 }

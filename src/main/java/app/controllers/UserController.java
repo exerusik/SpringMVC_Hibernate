@@ -32,8 +32,8 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String saveUser(@RequestParam String name, @RequestParam String lastname, @RequestParam int age) {
-        userService.saveUser(new User(name, lastname, age));
+    public String saveUser(@ModelAttribute User user) {
+        userService.saveUser(new User(user.getName(), user.getLastname(), user.getAge()));
         return "redirect:/showAll";
     }
 
@@ -51,17 +51,11 @@ public class UserController {
     }
 
     @PostMapping("/userEdit")
-    public String editUser(@ModelAttribute User user, @RequestParam(name = "id") long id) {
-        User editUser = new User();
-        editUser.setId(id);
-        editUser.setName(user.getName());
-        editUser.setLastname(user.getLastname());
-        editUser.setAge(user.getAge());
+    public String editUser(@ModelAttribute User user) {
+        userService.editUser(user);
 
-        userService.saveUser(editUser);
         return "redirect:/showAll";
 
 
     }
-
 }
